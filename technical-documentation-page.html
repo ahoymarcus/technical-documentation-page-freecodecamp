@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>Technical Documentation Page</title>
+	
+	<style>
+		* { margin: 0; padding: 0; }
+		.external-links-container { text-align: center; background-color: #c4fbdb;/*#13aa52;*/ }
+		.external-links-container a { color: #737272; }
+		body { color: #424950; background-color: #fefefe; /*#fdf1f2;*/ font-family: Akzidenz,"Helvetica Neue",sans-serif; }
+		
+		div.grid {
+			grid-template-areas: 
+				"header header header"
+				"navbar main main"
+				"footer footer footer";
+		}
+		header { grid-area: header; }
+		nav#navbar { grid-area: navbar; }
+		main { grid-area: main; }
+		footer { grid-area: footer; }
+		
+		ul { list-style: none; }
+		main ul { list-style: disc; }
+		a { text-decoration: none; }
+		p { margin: 24px 0; }
+		
+		nav#navbar header { text-align: center; margin: 10px; font-size: 1.5em; }
+		nav#navbar header h1 { line-height: 62px; margin: 0 0 .67em; font-size: 40px; }
+		nav#navbar ul { font-size: 15px; }
+		nav#navbar li { line-height: 30px; }
+		nav#navbar li:hover { background-color: #f5f6f7; border: 3px solid #13aa52; border-style: none solid none none; }
+		nav#navbar a { color: #424950; padding: 10px 30px; }
+		nav#navbar a:hover { color: #13aa52; }
+		nav#navbar div.overview { font-size: 22px; color: black; margin: 25px; }
+		
+		main { padding: 20px; margin-bottom: 20px; line-height: 1.5; }
+		
+		hr { border-top: 0.5px solid #e0e7e8; }
+		main article { margin: 15px; }
+		main header h2, main article h3 { margin: 20px 0; }
+		main article .section-division { margin: 22px 0; }
+		 
+		main article ul li { margin: 15px 0 0 20px; }
+		
+		main section.Procedure { display: flex; }
+		main section .section-division { color: white; background-color: #333; width: 24px; height: 24px; border-radius: 50%; text-align: center; font-weight: 700; }
+		section > .bullet-division { padding-right: 10px; margin-right: 5px; }
+
+		main section .note { background-color: #c4fbdb; padding: 10px; border: 5px solid #13aa52; border-style: none none none solid; margin: 30px 0; }
+		main section .note p:first-child { color: #13aa52; margin: 0 0 12.5px; }
+		
+		main section div.code { margin: 45px 0; }
+		main section code { font-size: 16px; background-color: #f5f6f7; padding: 20px; border: 5px solid black; border-style: none none none solid; white-space: nowrap; }
+		main section code::before { margin-top: 20px; }
+		main article div#json { line-height: 0.8; margin: 45px 0; background-color: #f5f6f7; padding: 20px; border: 5px solid black; border-style: none none none solid; }
+		main article div#json span { display: block; }
+		main article div#json span.indent1 { text-indent: 20px; }
+		main article div#json span.indent2 { text-indent: 60px; }
+		main article div#json span.indent3 { text-indent: 80px; }
+		
+		main article table { font-size: 14px;  margin: 24px 0; line-height: 24px; text-align: left; }
+		main article table tbody tr:nth-child(even) { background: rgba(198,245,164,.36078); }
+		main article table th { border: 1px solid #ebebed; /*#aaa;*/ border-style: none none solid none; padding: 0 5px 12px; }
+		main article table tbody td { padding: 11px 5px 12px; border: 1px solid #ebebed; /*#aaa;*/ border-style: none none solid none; }
+		
+		footer { font-size: 75%; padding: 20px; text-align: center; }
+		
+		/*MEDIA QUERY*/
+		@media only screen and (min-width: 500px) {
+			.external-links-container { display: flex; justify-content: space-around; }
+		}
+		@media only screen and (min-width: 640px) {
+			div.grid { display: grid; grid-template-columns: 1.1fr 0.9fr 1fr; grid-template-rows: auto auto auto auto; }
+			main { margin-top: 250px; }
+			nav#navbar h1 { position: relative; left: 340px; }
+			nav#navbar div.navbar { position: fixed; top: 100px; }
+		}
+		@media only screen and (min-width: 750px) {
+			main { margin-top: 200px; }
+		}
+		@media only screen and (min-width: 1030px) {
+			main { margin-top: 140px; }
+		}
+	</style>
+	
+</head>
+<body>
+	
+	<div class="grid">
+	
+		<header>
+			<ul class="external-links-container">
+				<li><a target="_blank" href="https://musica-erudita.netlify.app/">A Música Erudita</a>
+				</li>
+				<li><a target="_blank" href="https://musica-erudita.netlify.app/coral-historico.html">Pequeno Histórico da Música Erudita</a> </li>
+				<li><a target="blank" href="https://musica-erudita.netlify.app/coral-mundo.html">A Música Erudita no Mundo</a></li>
+				<li><a target="_blank" href="https://musica-erudita.netlify.app/coral-brasil.html">A Música Erudita no Brasil</a></li>
+				<li><a target="_blank" href="https://musica-erudita.netlify.app/coral-historico-vozes.html">As Vozes no Coral Sinfônico</a></li>
+			</ul>	
+		</header>
+		
+		<nav id="navbar">
+			<header><h1>Structure your Data for MongoDB</h1></header>
+			<div class="navbar">
+				<div class="overview"><b>Overview:</b></a></div>
+				<ul>
+				<li><a class="nav-link" href="#What_You'll_Need">What You'll Need</a></li>
+				<li><a class="nav-link" href="#Check_Your_Environment">Check Your Environment</a></li>
+				<li><a class="nav-link" href="#Procedure">Procedure</a></li>
+				<li><a class="nav-link" href="#Summary">Summary</a></li>
+				<li><a class="nav-link" href="#What's_Next">What's Next</a></li>
+				<li><a class="nav-link" href="#See_Also">See Also</a></li>
+				<li><a class="nav-link" href="#Reference">Reference</a></li>
+			</ul>
+			</div>
+		</nav>
+		
+		
+		<main id="main-doc">
+			
+			<p>Author: MongoDB Documentation Team</p>
+
+			<p>Welcome to the Getting Started guides. This guide will show you how to structure data for MongoDB.</p>
+
+			<p><em>Time required: 15 minutes</em></p>
+			
+			<hr />
+			
+			<section class="main-section" id="What_You'll_Need">
+				<header><h2>What You'll Need</h2></header>
+				<article>
+					<ul>
+						<li>An idea of what data you'd like to store.</li>
+					</ul>
+				</article>
+			</section>
+			
+			<hr />
+		
+			<section class="main-section" id="Check_Your_Environment">
+				<header><h2>Check Your Environment</h2></header>
+				<article>
+					<ul>
+						<li>There are no technical requirements for this guide.</li>
+					</ul>
+				</article>
+			</section>
+			
+			<hr />
+			
+			<section class="main-section" id="Procedure">
+				<header><h2>Procedure</h2></header>
+				<article>
+					<section class="Procedure">
+						<div class="bullet-division">
+							<div class="section-division">1</div>
+						</div>
+						<div class="text">
+							<h3>Define Your Data Set</h3>
+							<p>When setting up a data store, your first task is to answer the question: “What data would I like to store and how do the fields relate to each other?”.</p>
+							<p>This guide uses a hypothetical inventory database to track items and their quantities, sizes, tags, and ratings.</p>
+							<p>Here is an example of the types of fields you might wish to capture:</p>
+							<table>
+								<thead>
+									<tr>
+										<th>name</th>
+										<th>quantity</th>
+										<th>size</th>
+										<th>status</th>
+										<th>tags</th>
+										<th>rating</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>journal</td>	<td>25</td>	<td>14x21,cm</td>	<td>A</td>	<td>brown, lined</td>	<td>9</td>
+									</tr>
+									<tr>
+										<td>notebook</td>	<td>50</td>	<td>8.5x11,in</td>	<td>A</td>	<td>college-ruled,perforated</td>	<td>8</td>
+									</tr>
+									<tr>
+										<td>paper</td>	<td>100</td>	<td>8.5x11,in</td>	<td>D</td>	<td>watercolor</td>	<td>10</td>
+									</tr>
+									<tr>
+										<td>planner</td>	<td>75</td>	<td>22.85x30,cm</td>	<td>D</td>	<td>2019</td>	<td>10</td>
+									</tr>
+									<tr>
+										<td>postcard</td>	<td>45</td>	<td>10x,cm</td>	<td>D</td>	<td>double-sided,white</td>	<td>2</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</section>
+					
+					<section class="Procedure">
+						<div class="bullet-division">
+							<div class="section-division">2</div>
+						</div>
+						<div class="text">
+							<h3>Start Thinking in JSON</h3>
+							<p>While a table might seem like a good place to store data, as you can see from the example above, there are fields in this data set that require multiple values and would not be easy to search or display if modeled in a single column (for example – size and tags).</p>
+							<p>In a SQL database you might solve this problem by creating a relational table.</p>
+							<p>In MongoDB, data is stored as documents. These documents are stored in MongoDB in JSON (JavaScript Object Notation) format. JSON documents support embedded fields, so related data and lists of data can be stored with the document instead of an external table.</p>
+							<p>JSON is formatted as name/value pairs. In JSON documents, fieldnames and values are separated by a colon, fieldname and value pairs are separated by commas, and sets of fields are encapsulated in “curly braces” ({}).</p>
+							<p>If you wanted to begin to model one of the rows above, for example this one:</p>
+							<table>
+								<thead>
+									<tr>
+										<th>name</th>
+										<th>quantity</th>
+										<th>size</th>
+										<th>status</th>
+										<th>tags</th>
+										<th>rating</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>notebook</td>	<td>50</td>	<td>8.5x11,in</td>	<td>A</td>	<td>college-ruled,perforated</td>	<td>8</td>
+									</tr>
+								</tbody>
+							</table>
+							<p>You might start with the name and quantity fields. In JSON these fields would look like:</p>
+							<div class="code">
+								<code>{"name": "notebooke", "qty": 50 }</code>
+							</div>
+							
+						</div>
+					</section>
+					
+					<section class="Procedure">
+						<div class="bullet-division">
+							<div class="section-division">3</div>
+						</div>
+						<div class="text">
+							<h3>Identify Candidates for Embedded Data and Model Your Data</h3>
+							<p>Next you will decide which fields require multiple values. These fields will be candidates for embedded documents or lists/arrays of embedded documents within the document.</p>
+							<p>For example, in the data above, size might consist of three fields:</p>
+							<div class="code">
+								<code>{ "h": 11, "w": 8.5, "uom": "in" } </code>
+							</div>
+							<p>And some items have multiple ratings, so ratings might be represented as a list of documents containing the field scores:</p>
+							<div class="code">
+								<code>[ { "score": 8 }, { "score": 9 } ]</code>
+							</div>
+							<p>And you might need to handle multiple tags per item. So you might store them in a list too.</p>
+							<div class="code">
+								<code>[ "college-ruled", "perforated" ]</code>
+							</div>
+							<p>Finally, a JSON document that stores an inventory item might look like this:</p>
+						
+							<div id="json">
+								{<br />
+									<span class="indent1">"name": "notebook",</span><br />
+									<span class="indent1">"qty": 50,</span><br />
+									<span class="indent1">"rating": [ {"score": 8}, {"score": 9} ],</span><br />
+									<span class="indent1">"size": {</span><br />
+																									<span class="indent3">"height": 11,</span><br /> 
+																									<span class="indent3">"width": 8,5,</span><br /> 
+																									<span class="indent3">"unit": "in"</span><br />
+																					<span class="indent2">},</span><br />
+									<span class="indent1">"status": "A",</span><br />
+									<span class="indent1">"tags": [ "college-ruled", "perforated"]</span><br />
+								}
+							</div>
+								
+							<p>This looks very different from the tabular data structure you started with in Step 1.</p>
+							<div class="note">
+								<p>NOTE:</p>
+								<p>It’s a JSON standard to quote field names.</p>
+							</div>
+						</div>
+					</section>
+				</article>
+			</section>
+			
+			<hr />
+			
+			<section class="main-section" id="Summary">
+				<header><h2>Summary</h2></header>
+				<article>
+					<p>Congratulations. You now have an idea of how to structure your data using a JSON document.</p>
+				</article>
+			</section>
+			
+			<hr />
+			
+			<section class="main-section" id="What's_Next">
+				<header><h2>What's Next</h2></header>
+				<article>
+					<p>Next you’ll set up a MongoDB instance. Choose one of the following options:</p>
+					<ul>
+						<li><a target="_blank" href="https://docs.mongodb.com/guides/server/install/">Install MongoDB locally</a></li>
+						<li><a target="_blank" href="https://docs.atlas.mongodb.com/getting-started/">Create an Atlas Account and Cluster</a></li>
+					</ul>
+				</article>
+			</section>
+			
+			<hr />
+			
+			<section class="main-section" id="See_Also">
+				<header><h2>See Also</h2></header>
+				<article>
+					<p>Next you’ll set up a MongoDB instance. Choose one of the following options:</p>
+					<ul>
+						<li><a target="_blank" href="https://docs.mongodb.com/manual/core/document/">The MongoDB manual on Documents</a></li>
+						<li><a target="_blank" href="https://docs.mongodb.com/manual/core/data-modeling-introduction/">The MongoDB manual on Data Modeling</a></li>
+						<li>You can define the structure of your data for MongoDB using a JSON schema. See <a target="_blank" href="https://docs.mongodb.com/manual/core/schema-validation/">Schema Validation</a></li>
+						<li>Read more about what MongoDB can do, see <a target="_blank" href="Introduction to MongoDB">Introduction to MongoDB</a></li>
+					</ul>
+					<div class="note">
+						<p>NOTE:</p>
+						<p>This guide is intended for new learners of MongoDB. For more in-depth information, see <a target="_blank" href="https://docs.mongodb.com/manual/introduction/">The MongoDB Server Manual</a></p>
+					</div>
+				</article>
+			</section>
+			
+			<hr />
+			
+			<section class="main-section" id="Reference">
+				<header><h2>Reference</h2></header>
+				<article>
+					<ul class="Reference">
+						<li>All the documentation in this page is taken from <a target="_blank" href="https://docs.mongodb.com/guides/server/introduction/">MongoDB Documentation</a></li>
+					</ul>	
+					
+					<div class="code">
+            <code><a target="_blank" href="https://www.freecodecamp.org/ahoymarcus">Freecodecamp</a> + Web Design = AWESOME</code>
+          </div>
+					
+				</article>
+			</section>
+		
+		</main>
+
+
+		<footer>
+			<!--<ul class="external-links-container">
+				<li><a target="_blank" href="https://musica-erudita.netlify.app/">A Música Erudita</a> </li>
+				<li><a target="_blank" href="https://musica-erudita.netlify.app/coral-historico.html">Pequeno Histórico da Música Erudita</a> </li>
+				<li><a target="blank" href="https://musica-erudita.netlify.app/coral-mundo.html">A Música Erudita no Mundo</a></li>
+				<li><a target="_blank" href="https://musica-erudita.netlify.app/coral-brasil.html">A Música Erudita no Brasil</a></li>
+				<li><a target="_blank" href="https://musica-erudita.netlify.app/coral-historico-vozes.html">As Vozes no Coral Sinfônico</a></li>
+			</ul>-->
+			
+			<p>© MongoDB, Inc 2008-present. MongoDB, Mongo, and the leaf logo are registered trademarks of MongoDB, Inc.</p>
+			
+		</footer>
+	
+	</div>
+
+</body>
+</html>
